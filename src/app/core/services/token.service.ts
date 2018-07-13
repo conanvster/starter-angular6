@@ -14,9 +14,9 @@ export class TokenService {
         const data = value.split('=');
         if (data[0] === 'token') {
           this.token = data[1];
-          return data[1];
         }
       });
+    return this.token;
   }
 
   public setToken(token: string): void {
