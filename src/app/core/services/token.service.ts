@@ -26,4 +26,8 @@ export class TokenService {
     this.token = token;
   }
 
+  public removeToken(): void {
+    document.cookie = `token=; path=/; expires=-1`;
+  }
+
 }

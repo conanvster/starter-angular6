@@ -1,18 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { TokenService } from './token.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
 
-  constructor(private http: HttpClient,
-              private tokenService: TokenService) {
-  }
-
   public user = new BehaviorSubject<User>(null);
+  public isGuest = new BehaviorSubject<boolean>(true);
+
+  constructor(private http: HttpClient,
+              private tokenService: TokenService,
+              private injector: Injector) {
+    this.user.subscribe((user: User) => {
+      this.isGuest.next(!Boolean(user));
+    });
+  }
 
   public getUser(): Observable<User> {
     if (!this.tokenService.getToken()) {
@@ -26,8 +32,21 @@ export class UserService {
       }));
   }
 
-  // TODO: Use this function before init app
+  public logOut(): void {
+    this.user.next(null);
+    this.tokenService.removeToken();
+    this.router().navigate(['/']);
+  }
+
   public getUserForLoad(): Promise<User> {
     return this.getUser().toPromise();
+  }
+
+  public changePassword(data: {}): Observable<any> {
+    return this.http.put(`api/users/${this.user.getValue()._id}/password`, data);
+  }
+
+  private router(): Router {
+    return this.injector.get(Router);
   }
 }

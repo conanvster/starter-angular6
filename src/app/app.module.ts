@@ -15,6 +15,14 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { TokenService } from './core/services/token.service';
 import { HttpHeadersInterceptor } from './core/interceptors/http-headers.interceptor';
 import { UserService } from './core/services/user.service';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { AuthGuardService } from './core/services/auth-guard.service';
+
+export function initializer(userService: UserService) {
+  return () => {
+        return userService.getUserForLoad();
+  };
+}
 
 @NgModule({
   declarations: [
@@ -22,7 +30,8 @@ import { UserService } from './core/services/user.service';
     HomeComponent,
     SignInComponent,
     SignUpComponent,
-    MenuComponent
+    MenuComponent,
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -33,10 +42,12 @@ import { UserService } from './core/services/user.service';
     MaterialModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
     AuthService,
     TokenService,
-    UserService
+    UserService,
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
+    { provide: APP_INITIALIZER, useFactory: initializer, deps: [UserService], multi: true },
   ],
   bootstrap: [AppComponent]
 })
