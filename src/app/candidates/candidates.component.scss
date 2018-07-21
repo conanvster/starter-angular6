@@ -1,0 +1,27 @@
+mat-table {
+  width: 100%;
+  mat-form-field {
+    width: 100%
+  }
+  .mat-column-actions {
+    justify-content: center;
+  }
+}
+// TODO add this styles to customed material component
+mat-header-cell,
+mat-footer-cell,
+mat-cell {
+  padding: 0 10px;
+}
+
+mat-cell:last-child,
+mat-footer-cell:last-child,
+mat-header-cell:last-child {
+  padding-right: 24px;
+}
+
+mat-cell:first-child,
+mat-footer-cell:first-child,
+mat-header-cell:first-child {
+  padding-left: 24px;
+}

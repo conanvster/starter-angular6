@@ -1,0 +1,86 @@
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort [formGroup]="formFilter">
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.firstName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.lastName}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastVisitDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last Visit</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.lastVisitDate | date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastPosition">
+      <mat-header-cell *matHeaderCellDef>Last Position</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{getPositionById(element._lastVisitPosition)}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary"
+                routerLink="/add-candidate">
+          <mat-icon aria-label="Delete">playlist_add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary"
+                (click)="edit(element._id)">
+          <mat-icon aria-label="Delete">edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn"
+                (click)="delete(element._id)">
+          <mat-icon aria-label="Delete">delete_outline</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="filterFirstName">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <input matInput placeholder="First Name Filter" formControlName="firstName">
+        </mat-form-field>
+      </mat-header-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="filterLastName">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <input matInput placeholder="Last Name Filter" formControlName="lastName">
+        </mat-form-field>
+      </mat-header-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="filterLastPosition">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-form-field>
+          <mat-select placeholder="Last Position Filter" formControlName="_lastVisitPosition">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let position of positions" [value]="position._id">
+              {{position.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-header-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="empty">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="columnsWithFilter"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </mat-table>
+  <mat-paginator showFirstLastButtons [pageSizeOptions]="[10, 15, 20]"></mat-paginator>
+
+</div>
+

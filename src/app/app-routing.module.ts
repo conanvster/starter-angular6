@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
+import { CandidatesComponent } from './candidates/candidates.component';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 
 const routes: Routes = [
   {
-    path: '',
-    pathMatch: 'full',
-    component: HomeComponent,
+    path: 'candidates',
+    component: CandidatesComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: 'add-candidate',
+    component: CandidateFormComponent,
     canActivate: [AuthGuardService],
   },
   {
@@ -28,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'candidates'
   }
 ];
 

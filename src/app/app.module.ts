@@ -17,10 +17,15 @@ import { HttpHeadersInterceptor } from './core/interceptors/http-headers.interce
 import { UserService } from './core/services/user.service';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
+import { CandidatesComponent } from './candidates/candidates.component';
+import { CandidateFormComponent } from './candidate-form/candidate-form.component';
+import { CandidatesService } from './core/services/candidates.service';
+import { EntityService } from './core/services/entity.service';
+import { VisitFormComponent } from './visit-form/visit-form.component';
 
 export function initializer(userService: UserService) {
   return () => {
-        return userService.getUserForLoad();
+    return userService.getUserForLoad();
   };
 }
 
@@ -31,7 +36,10 @@ export function initializer(userService: UserService) {
     SignInComponent,
     SignUpComponent,
     MenuComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    CandidatesComponent,
+    CandidateFormComponent,
+    VisitFormComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +54,8 @@ export function initializer(userService: UserService) {
     TokenService,
     UserService,
     AuthGuardService,
+    CandidatesService,
+    EntityService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
     { provide: APP_INITIALIZER, useFactory: initializer, deps: [UserService], multi: true },
   ],

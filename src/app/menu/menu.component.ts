@@ -17,7 +17,6 @@ export class MenuComponent implements OnInit {
     this.userService.isGuest
       .subscribe((value: boolean) => {
         this.isGuest = value;
-        console.log(value);
       });
   }
 

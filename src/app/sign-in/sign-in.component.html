@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-6">
+  <div class="offset-lg-3 col-lg-6 mat-elevation-z8 component-container">
     <h2>Sign In</h2>
     <form [formGroup]="form" (submit)="onSubmitForm()">
       <mat-form-field>
@@ -16,7 +16,8 @@
       </mat-form-field>
       <button mat-raised-button
               type="submit"
-              color="primary">Sign In</button>
+              color="primary">Sign In
+      </button>
     </form>
   </div>
 </div>
