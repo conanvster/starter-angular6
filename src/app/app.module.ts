@@ -6,7 +6,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material/material.module';
-import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { MenuComponent } from './menu/menu.component';
@@ -17,11 +16,8 @@ import { HttpHeadersInterceptor } from './core/interceptors/http-headers.interce
 import { UserService } from './core/services/user.service';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
-import { CandidatesComponent } from './candidates/candidates.component';
-import { CandidateFormComponent } from './candidate-form/candidate-form.component';
 import { CandidatesService } from './core/services/candidates.service';
 import { EntityService } from './core/services/entity.service';
-import { VisitFormComponent } from './visit-form/visit-form.component';
 
 export function initializer(userService: UserService) {
   return () => {
@@ -32,14 +28,10 @@ export function initializer(userService: UserService) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     SignInComponent,
     SignUpComponent,
     MenuComponent,
-    ProfileSettingsComponent,
-    CandidatesComponent,
-    CandidateFormComponent,
-    VisitFormComponent
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,

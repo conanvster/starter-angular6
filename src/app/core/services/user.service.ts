@@ -35,7 +35,7 @@ export class UserService {
   public logOut(): void {
     this.user.next(null);
     this.tokenService.removeToken();
-    this.router().navigate(['/']);
+    this.router().navigate(['/sign-in']);
   }
 
   public getUserForLoad(): Promise<User> {

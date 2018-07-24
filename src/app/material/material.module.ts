@@ -1,9 +1,21 @@
 import { NgModule } from '@angular/core';
 import {
-  MatButtonModule, MatButtonToggleModule, MatDatepickerModule, MatDividerModule,
-  MatFormFieldModule, MatIconModule,
-  MatInputModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatSelectModule, MatSlideToggleModule, MatSortModule,
-  MatTableModule, MatTabsModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatDatepickerModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -23,7 +35,8 @@ const modules = [
   MatTabsModule,
   MatMenuModule,
   MatSlideToggleModule,
-  MatDividerModule
+  MatDividerModule,
+  MatSliderModule
 ];
 
 @NgModule({

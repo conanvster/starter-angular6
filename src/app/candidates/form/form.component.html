@@ -1,0 +1,70 @@
+<div class="mat-elevation-z8 component-container">
+  <form [formGroup]="form" (submit)="submitForm()">
+    <div class="row">
+      <div class="col-lg-6">
+        <mat-form-field>
+          <input matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" [max]="today" placeholder="Birthday" formControlName="birthYear">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker [startView]="'multi-year'"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Skype" formControlName="skypeId">
+        </mat-form-field>
+      </div>
+      <div class="col-lg-6">
+        <mat-form-field>
+          <input matInput placeholder="Phone #1" formControlName="phone1">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phone #2" formControlName="phone2">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Linkedin URL" formControlName="linkedinUrl">
+        </mat-form-field>
+        <div class="preferences-block">
+          <div>
+            <span>Preferences</span>
+          </div>
+          <mat-button-toggle-group formControlName="preferences">
+            <mat-button-toggle value="blacklist">
+              Blacklist
+            </mat-button-toggle>
+            <mat-button-toggle value="">
+              Normal
+            </mat-button-toggle>
+            <mat-button-toggle value="right">
+              Wish list
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <mat-form-field>
+          <textarea matInput placeholder="Notes" formControlName="notes" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <app-candidates-visit-tabs [visits]="form.get('visits')"
+                                   [visitsData]="visitsData"
+                                   (addVisit)="addVisit()"
+                                   (removeVisit)="removeVisit($event)"
+                                   formArrayName="visits"
+        ></app-candidates-visit-tabs>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <button class="align-self-end" mat-raised-button type="submit" color="primary">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

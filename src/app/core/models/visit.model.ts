@@ -1,4 +1,4 @@
-import { Closed } from './closed.enum';
+import { Closed } from '../enums/closed.enum';
 
 export class Visit {
   _id: string;

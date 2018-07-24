@@ -1,0 +1,10 @@
+.preferences-block {
+  margin: 1em 0;
+  display: flex;
+  & > div {
+    color: rgba(0, 0, 0, .54);
+    display: flex;
+    align-self: center;
+    margin-right: 15px;
+  }
+}

@@ -1,21 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
-import { CandidatesComponent } from './candidates/candidates.component';
-import { CandidateFormComponent } from './candidate-form/candidate-form.component';
+import { CandidatesModule } from './candidates/candidates.module';
 
 const routes: Routes = [
   {
     path: 'candidates',
-    component: CandidatesComponent,
-    canActivate: [AuthGuardService],
-  },
-  {
-    path: 'add-candidate',
-    component: CandidateFormComponent,
+    loadChildren: () => CandidatesModule,
     canActivate: [AuthGuardService],
   },
   {
@@ -33,12 +27,15 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'candidates'
+    redirectTo: '/candidates',
+    pathMatch: 'full'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
