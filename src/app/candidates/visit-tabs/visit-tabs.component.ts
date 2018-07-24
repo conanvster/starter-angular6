@@ -1,20 +1,21 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { find } from 'lodash';
-import { forkJoin } from 'rxjs';
+import { forkJoin, Subject } from 'rxjs';
 import { EntityService } from '../../core/services/entity.service';
 import { Position } from '../../core/models/position.model';
 import { Origin } from '../../core/models/origin.model';
 import { Agency } from '../../core/models/agency.model';
 import { Closed } from '../../core/enums/closed.enum';
 import { Visit } from '../../core/models/visit.model';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-candidates-visit-tabs',
   templateUrl: './visit-tabs.component.html',
   styleUrls: ['./visit-tabs.component.scss']
 })
-export class VisitTabsComponent implements OnInit {
+export class VisitTabsComponent implements OnInit, OnDestroy {
 
   @Input() visits: FormArray;
   @Input() visitsData: Visit[];
@@ -26,15 +27,32 @@ export class VisitTabsComponent implements OnInit {
   public closed;
   public today: Date = new Date();
 
+  private destroy$: Subject<boolean> = new Subject();
+
   constructor(private entityService: EntityService,
               private fb: FormBuilder) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
+    this.visits.valueChanges
+      .pipe(
+        debounceTime(0),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((data: Visit[]) => {
+        data.forEach((visit: Visit, key: number) => {
+          console.log(visit.closed);
+          visit.closed ?
+            this.getVisitsItem(key).disable({ emitEvent: false }) :
+            this.getVisitsItem(key).enable({ emitEvent: false });
+        });
+      });
+
     if (this.visitsData.length) {
-      this.visitsData.forEach((visit, i) => {
+      this.visitsData.forEach((visit: any, i) => {
         this.addVisit();
-        this.visits.get(i.toString()).patchValue(visit);
+        this.getVisitsItem(i).patchValue(visit);
       });
     } else {
       this.addVisit();
@@ -46,11 +64,18 @@ export class VisitTabsComponent implements OnInit {
       this.entityService.getPositions(),
       this.entityService.getAgencies(),
       this.entityService.getOrigins()
-    ]).subscribe(([positions, agencies, origins]) => {
-      this.positions = positions;
-      this.agencies = agencies;
-      this.origins = origins;
-    });
+    ])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(([positions, agencies, origins]) => {
+        this.positions = positions;
+        this.agencies = agencies;
+        this.origins = origins;
+      });
+  }
+
+  public ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   public reopenVisit(i: number): void {
