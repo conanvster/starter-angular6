@@ -96,7 +96,7 @@ export class CandidatesComponent implements OnInit, OnDestroy {
   }
 
   private setCandidatesToDataSource(): void {
-    this.candidatesService.getCandidates()
+    this.candidatesService.getAll()
       .pipe(takeUntil(this.destroy$))
       .subscribe((candidates: Candidate[]) => {
         this.dataSource.data = candidates;

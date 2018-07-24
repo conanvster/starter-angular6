@@ -9,8 +9,12 @@ export class CandidatesService {
   constructor(private http: HttpClient) {
   }
 
-  public getCandidates(): Observable<Candidate[]> {
+  public getAll(): Observable<Candidate[]> {
     return this.http.get<Candidate[]>('api/candidates');
+  }
+
+  public create(candidate: Candidate): Observable<Candidate> {
+    return this.http.post<Candidate>(`api/candidates`, candidate);
   }
 
   public delete(id: string): Observable<{}> {

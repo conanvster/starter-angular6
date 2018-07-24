@@ -1,7 +1,9 @@
+import { Closed } from './closed.enum';
+
 export class Visit {
   _id: string;
   active: boolean;
-  closed: string;
+  closed: boolean | Closed;
   general: {
     company: string;
     date: Date;
