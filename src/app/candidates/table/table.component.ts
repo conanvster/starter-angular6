@@ -8,6 +8,7 @@ import { EntityService } from '../../core/services/entity.service';
 import { Position } from '../../core/models/position.model';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-candidates-table',
@@ -30,7 +31,8 @@ export class TableComponent implements OnInit, OnDestroy {
 
   constructor(private candidatesService: CandidatesService,
               private entityService: EntityService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -84,6 +86,10 @@ export class TableComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.setCandidatesToDataSource();
       });
+  }
+
+  public goToEdit(id: string): void {
+    this.router.navigate([`candidates/${id}`]);
   }
 
 // TODO: add date reducer for this route

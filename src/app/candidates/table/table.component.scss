@@ -6,6 +6,12 @@ mat-table {
   .mat-column-actions {
     justify-content: center;
   }
+  mat-row {
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0,0,0,.16);
+    }
+  }
 }
 // TODO add this styles to customed material component
 mat-header-cell,

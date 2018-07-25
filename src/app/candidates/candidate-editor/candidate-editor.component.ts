@@ -7,11 +7,11 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-candidate-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  selector: 'app-candidate-candidate-editor',
+  templateUrl: './candidate-editor.component.html',
+  styleUrls: ['./candidate-editor.component.scss']
 })
-export class FormComponent implements OnInit, OnDestroy {
+export class CandidateEditorComponent implements OnInit, OnDestroy {
 
   public form: FormGroup;
   public today: Date = new Date();

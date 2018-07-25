@@ -23,8 +23,6 @@ export class VisitTabsComponent implements OnInit, OnDestroy {
   public positions: Position[];
   public agencies: Agency[];
   public origins: Origin[];
-  public periods: string[] = ['1 Month', '2 Month', '3 Month', '4 Month'];
-  public closed;
   public today: Date = new Date();
 
   private destroy$: Subject<boolean> = new Subject();
@@ -49,7 +47,7 @@ export class VisitTabsComponent implements OnInit, OnDestroy {
         });
       });
 
-    if (this.visitsData.length) {
+    if (this.visitsData) {
       this.visitsData.forEach((visit: any, i) => {
         this.addVisit();
         this.getVisitsItem(i).patchValue(visit);
@@ -57,8 +55,6 @@ export class VisitTabsComponent implements OnInit, OnDestroy {
     } else {
       this.addVisit();
     }
-
-    this.closed = Closed;
 
     forkJoin([
       this.entityService.getPositions(),

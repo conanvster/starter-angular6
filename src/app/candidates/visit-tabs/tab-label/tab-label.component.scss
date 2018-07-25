@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  .label {
+    margin: 0 5px;
+  }
+  .mat-icon-button {
+    width: 25px;
+    height: 25px;
+    line-height: 0;
+  }
+  .notification-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+  }
+}

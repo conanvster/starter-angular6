@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CandidatesComponent } from './candidates.component';
 import { TableComponent } from './table/table.component';
-import { FormComponent } from './form/form.component';
+import { CandidateEditorComponent } from './candidate-editor/candidate-editor.component';
 import { CandidateResolverService } from './candidate-resolver.service';
 
 const candidateRoutes: Routes = [
@@ -16,11 +16,11 @@ const candidateRoutes: Routes = [
       },
       {
         path: 'add',
-        component: FormComponent,
+        component: CandidateEditorComponent,
       },
       {
         path: ':id',
-        component: FormComponent,
+        component: CandidateEditorComponent,
         resolve: {
           candidate: CandidateResolverService
         }

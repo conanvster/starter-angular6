@@ -9,7 +9,7 @@ import {
   MatInputModule,
   MatMenuModule,
   MatNativeDateModule,
-  MatPaginatorModule,
+  MatPaginatorModule, MatRippleModule,
   MatSelectModule,
   MatSliderModule,
   MatSlideToggleModule,
