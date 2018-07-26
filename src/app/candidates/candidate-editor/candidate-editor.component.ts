@@ -64,7 +64,7 @@ export class CandidateEditorComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      birthYear: [''],
+      birthYear: ['', [Validators.max(this.today.getFullYear())]],
       email: [''],
       skypeId: [''],
       phone1: [''],

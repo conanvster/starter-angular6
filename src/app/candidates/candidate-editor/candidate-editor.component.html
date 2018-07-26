@@ -9,9 +9,7 @@
           <input matInput placeholder="Last Name" formControlName="lastName">
         </mat-form-field>
         <mat-form-field>
-          <input matInput [matDatepicker]="picker" [max]="today" placeholder="Birthday" formControlName="birthYear">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker [startView]="'multi-year'"></mat-datepicker>
+          <input matInput type="number" placeholder="Year of Birth" formControlName="birthYear">
         </mat-form-field>
         <mat-form-field>
           <input matInput placeholder="Email" formControlName="email">

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_INITIALIZER, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +18,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { AuthGuardService } from './core/services/auth-guard.service';
 import { CandidatesService } from './core/services/candidates.service';
 import { EntityService } from './core/services/entity.service';
+import { ErrorsHandlerService } from './core/services/errors-handler.service';
 
 export function initializer(userService: UserService) {
   return () => {
@@ -50,6 +51,7 @@ export function initializer(userService: UserService) {
     EntityService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
     { provide: APP_INITIALIZER, useFactory: initializer, deps: [UserService], multi: true },
+    { provide: ErrorHandler, useClass: ErrorsHandlerService }
   ],
   bootstrap: [AppComponent]
 })

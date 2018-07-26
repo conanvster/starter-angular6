@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { finalize, map, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { TokenService } from './token.service';
 import { Router } from '@angular/router';
@@ -29,6 +29,7 @@ export class UserService {
         this.user.next(user);
       }, () => {
         this.user.next(null);
+        this.tokenService.removeToken();
       }));
   }
 
@@ -38,8 +39,12 @@ export class UserService {
     this.router().navigate(['/sign-in']);
   }
 
-  public getUserForLoad(): Promise<User> {
-    return this.getUser().toPromise();
+  public getUserForLoad(): Promise<any> {
+    return new Promise((resolve) => {
+      this.getUser().pipe(finalize(() => {
+        resolve();
+      })).subscribe();
+    });
   }
 
   public changePassword(data: {}): Observable<any> {

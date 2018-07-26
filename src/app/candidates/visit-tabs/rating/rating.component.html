@@ -1,0 +1,12 @@
+<div class="rating">
+  <div class="rating-label">
+    <span>{{label}}</span>
+  </div>
+  <div class="rating-block">
+    <div *ngFor="let i of [1, 2, 3, 4, 5]">
+      <button mat-icon-button color="primary" (click)="changeValue(i)" type="button">
+        <mat-icon>{{checked(i) ? 'star' : 'star_border'}}</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.rating {
+  display: flex;
+  flex-direction: column;
+  .rating-label {
+    padding-left: 10px;
+    span {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .rating-block {
+    display: flex;
+  }
+}

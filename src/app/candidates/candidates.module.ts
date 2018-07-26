@@ -12,6 +12,7 @@ import { TabLabelComponent } from './visit-tabs/tab-label/tab-label.component';
 import { GeneralComponent } from './visit-tabs/general/general.component';
 import { UniversalBlockComponent } from './visit-tabs/universal-block/universal-block.component';
 import { ProposalComponent } from './visit-tabs/proposal/proposal.component';
+import { RatingComponent } from './visit-tabs/rating/rating.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ProposalComponent } from './visit-tabs/proposal/proposal.component';
     TabLabelComponent,
     GeneralComponent,
     UniversalBlockComponent,
-    ProposalComponent
+    ProposalComponent,
+    RatingComponent
   ],
   providers: [
     CandidatesService
