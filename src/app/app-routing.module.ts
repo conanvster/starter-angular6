@@ -5,12 +5,17 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { AuthGuardService } from './core/services/auth-guard.service';
 import { CandidatesModule } from './candidates/candidates.module';
+import {SkillsComponent} from './skills/skills.component';
 
 const routes: Routes = [
   {
     path: 'candidates',
     loadChildren: () => CandidatesModule,
     canActivate: [AuthGuardService],
+  },
+  {
+    path: "skills",
+    component: SkillsComponent
   },
   {
     path: 'profile-settings',

@@ -19,6 +19,7 @@ import { AuthGuardService } from './core/services/auth-guard.service';
 import { CandidatesService } from './core/services/candidates.service';
 import { EntityService } from './core/services/entity.service';
 import { ErrorsHandlerService } from './core/services/errors-handler.service';
+import {SkillsComponent} from './skills/skills.component';
 
 export function initializer(userService: UserService) {
   return () => {
@@ -32,7 +33,8 @@ export function initializer(userService: UserService) {
     SignInComponent,
     SignUpComponent,
     MenuComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    SkillsComponent
   ],
   imports: [
     BrowserModule,
