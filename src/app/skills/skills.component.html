@@ -1,0 +1,149 @@
+<div class="mat-elevation-z8 component-container">
+  <form [formGroup]="form" (submit)="submitForm()">
+    <div class="row">
+      <div class="col-lg-6">
+        <fieldset>
+          <legend>Programming languages</legend>
+            <mat-form-field>
+              <input matInput type="number" placeholder="PHP" formControlName="php">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="C++" formControlName="cpp">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Java" formControlName="java">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="JavaScript" formControlName="js">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Python" formControlName="python">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="number" placeholder="Ruby" formControlName="ruby">
+            </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>OOP: </legend>
+          <mat-form-field>
+            <input matInput type="number" placeholder="OOP concepts" formControlName="oopConcepts">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="OO design patterns" formControlName="ooDesignPatterns">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Exceptions" formControlName="exceptions">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="SOLID" formControlName="solid">
+          </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>Databases</legend>
+          <mat-form-field>
+            <input matInput type="number" placeholder="SQL" formControlName="sql">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="DB Design" formControlName="dbDesign">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="ORB" formControlName="orm">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="NoSQL" formControlName="nosql">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="MYSQL" formControlName="mysql">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="PostgreSQL" formControlName="postgresql">
+          </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>Networking</legend>
+          <mat-form-field>
+            <input matInput type="number" placeholder="TCP/IP stack" formControlName="tcpIpStack">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Sockets programming" formControlName="socketsProgramming">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="HTTP" formControlName="http">
+          </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>PHP Frameworks</legend>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Symphony v.2/3" formControlName="symphony">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Zend v.2" formControlName="zend">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="YII v.2" formControlName="yii">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Doctrine ORM v.2" formControlName="doctrine">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Laravel" formControlName="laravel">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Phalcon" formControlName="phalcon">
+          </mat-form-field>
+        </fieldset>
+      </div>
+      <div class="col-lg-6">
+        <fieldset>
+          <legend>JS Frameworks</legend>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Angular" formControlName="angular">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Vue" formControlName="vue">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="React" formControlName="react">
+          </mat-form-field>
+        </fieldset>
+        <fieldset>
+          <legend>Practices / Platforms</legend>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Scrum / Agile" formControlName="scrumAgile">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Unit Tests" formControlName="unitTests">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Functional Tests" formControlName="functionalTests">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="TDD" formControlName="tdd">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="BDD" formControlName="bdd">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="CI" formControlName="ci">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Docker" formControlName="docker">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="RabbitMQ" formControlName="rabbitMq">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="Highload sites" formControlName="highloadSites">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" placeholder="NodeJS" formControlName="nodeJs">
+          </mat-form-field>
+        </fieldset>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <button class="align-self-end" mat-raised-button type="submit" color="primary">Save</button>
+    </div>
+  </form>
+</div>
+
