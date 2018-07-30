@@ -5,13 +5,13 @@ import { Origin } from '../../../core/models/origin.model';
 import { Position } from '../../../core/models/position.model';
 
 @Component({
-  selector: 'app-candidates-visit-tabs-general',
+  selector: 'app-general',
   templateUrl: './general.component.html',
   styleUrls: ['./general.component.scss']
 })
 export class GeneralComponent {
 
-  @Input() public general: FormGroup;
+  @Input() public form: FormGroup;
   @Input() public agencies: Agency[];
   @Input() public positions: Position[];
   @Input() public origin: Origin[];

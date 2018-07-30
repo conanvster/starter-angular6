@@ -3,13 +3,13 @@ import { FormGroup } from '@angular/forms';
 import { Closed } from '../../../core/enums/closed.enum';
 
 @Component({
-  selector: 'app-candidates-visit-tabs-label',
-  templateUrl: './tab-label.component.html',
-  styleUrls: ['./tab-label.component.scss']
+  selector: 'app-label',
+  templateUrl: './label.component.html',
+  styleUrls: ['./label.component.scss']
 })
-export class TabLabelComponent implements OnInit {
+export class LabelComponent implements OnInit {
 
-  @Input() public visit: FormGroup;
+  @Input() public form: FormGroup;
   @Input() private tabIndex: number;
   @Output() public closeVisit = new EventEmitter<Closed>();
   @Output() public reopenVisit = new EventEmitter();
@@ -23,8 +23,8 @@ export class TabLabelComponent implements OnInit {
 
   public closedValue(match?: Closed): boolean | Closed {
     return match ?
-      this.visit.get('closed').value === match :
-      this.visit.get('closed').value;
+      this.form.get('closed').value === match :
+      this.form.get('closed').value;
   }
 
   public close(type: Closed): void {

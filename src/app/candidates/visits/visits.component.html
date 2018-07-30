@@ -1,0 +1,47 @@
+<mat-tab-group [selectedIndex]="[(selectedIndex)]">
+  <mat-tab [disabled]="true">
+    <ng-template mat-tab-label>
+      <div matTooltip="Already have open visit(s)"
+           matTooltipPosition="above"
+           [matTooltipDisabled]="!hasActiveVisits()">
+        <button mat-button color="primary" type="button"
+                (click)="addVisit()"
+                [disabled]="hasActiveVisits()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </ng-template>
+  </mat-tab>
+  <mat-tab *ngFor="let visit of form.controls; let i=index" [formGroup]="visit">
+    <ng-template mat-tab-label>
+      <app-label [form]="visit"
+                 (removeVisit)="removeVisit(i)"
+                 (reopenVisit)="reopenVisit(i)"
+                 (closeVisit)="closeVisit(i, $event)">
+      </app-label>
+    </ng-template>
+    <div class="row closed-alert mat-elevation-z4" *ngIf="visit.get('closed').value">
+      <div class="col-lg-12">{{getClosedAlertText(visit.get('closed').value)}}</div>
+    </div>
+    <app-general [form]="visit.get('general')"
+                 [origin]="origins"
+                 [positions]="positions"
+                 [agencies]="agencies"
+                 formGroupName="general">
+    </app-general>
+    <app-universal-block class="slide-block"
+                         formGroupName="skype"
+                         [blockName]="'Skype interview'"
+                         [form]="visit.get('skype')">
+    </app-universal-block>
+    <app-universal-block class="slide-block"
+                         formGroupName="office"
+                         [blockName]="'Office interview'"
+                         [form]="visit.get('office')">
+    </app-universal-block>
+    <app-proposal class="slide-block"
+                  formGroupName="proposal"
+                  [form]="visit.get('proposal')">
+    </app-proposal>
+  </mat-tab>
+</mat-tab-group>

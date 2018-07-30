@@ -8,14 +8,14 @@ import { FormControl } from '@angular/forms';
 })
 export class RatingComponent {
 
-  @Input() public rating: FormControl;
+  @Input() public control: FormControl;
   @Input() public label: string;
 
   public checked(value: number): boolean {
-    return this.rating.value >= value;
+    return this.control.value >= value;
   }
 
   changeValue(rating: number): void {
-    this.rating.setValue(this.rating.value === rating ? rating - 1 : rating);
+    this.control.setValue(this.control.value === rating ? rating - 1 : rating);
   }
 }

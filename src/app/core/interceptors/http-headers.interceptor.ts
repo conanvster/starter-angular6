@@ -3,7 +3,6 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { TokenService } from '../services/token.service';
-import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class HttpHeadersInterceptor implements HttpInterceptor {
@@ -25,6 +24,4 @@ export class HttpHeadersInterceptor implements HttpInterceptor {
     });
     return next.handle(request);
   }
-
-  // private hadleAuthError()
 }

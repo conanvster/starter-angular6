@@ -6,13 +6,13 @@ import { CandidatesComponent } from './candidates.component';
 import { CandidatesRoutingModule } from './candidates-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { TableComponent } from './table/table.component';
-import { VisitTabsComponent } from './visit-tabs/visit-tabs.component';
+import { VisitsComponent } from './visits/visits.component';
 import { CandidatesService } from '../core/services/candidates.service';
-import { TabLabelComponent } from './visit-tabs/tab-label/tab-label.component';
-import { GeneralComponent } from './visit-tabs/general/general.component';
-import { UniversalBlockComponent } from './visit-tabs/universal-block/universal-block.component';
-import { ProposalComponent } from './visit-tabs/proposal/proposal.component';
-import { RatingComponent } from './visit-tabs/rating/rating.component';
+import { LabelComponent } from './visits/label/label.component';
+import { GeneralComponent } from './visits/general/general.component';
+import { UniversalBlockComponent } from './visits/universal-block/universal-block.component';
+import { ProposalComponent } from './visits/proposal/proposal.component';
+import { RatingComponent } from './visits/rating/rating.component';
 
 @NgModule({
   imports: [
@@ -25,8 +25,8 @@ import { RatingComponent } from './visit-tabs/rating/rating.component';
     CandidateEditorComponent,
     CandidatesComponent,
     TableComponent,
-    VisitTabsComponent,
-    TabLabelComponent,
+    VisitsComponent,
+    LabelComponent,
     GeneralComponent,
     UniversalBlockComponent,
     ProposalComponent,
