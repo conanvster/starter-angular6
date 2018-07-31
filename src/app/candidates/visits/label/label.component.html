@@ -10,9 +10,9 @@
           *ngIf="!closedValue()"
           color="primary">hourglass_empty
 </mat-icon>
-<div class="label">{{visit.get('general').get('date').value | date}}</div>
+<div class="label">{{form.get('general').get('date').value | date}}</div>
 <mat-icon class="notification-icon"
-          *ngIf="visit.invalid"
+          *ngIf="form.invalid"
           color="warn">warning
 </mat-icon>
 <button mat-icon-button
@@ -24,7 +24,7 @@
 </button>
 <mat-menu #menu="matMenu" [overlapTrigger]="false">
   <button mat-menu-item (click)="remove()">Remove</button>
-  <div *ngIf="!visit.get('closed').value; else menuButtonsForNotActiveVisit">
+  <div *ngIf="!form.get('closed').value; else menuButtonsForNotActiveVisit">
     <button mat-menu-item (click)="close(closed.REJECTED)">Close with rejection</button>
     <button mat-menu-item (click)="close(closed.HIRED)">Close with hire</button>
   </div>

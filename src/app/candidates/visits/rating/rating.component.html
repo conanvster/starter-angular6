@@ -4,7 +4,7 @@
   </div>
   <div class="rating-block">
     <div *ngFor="let i of [1, 2, 3, 4, 5]">
-      <button mat-icon-button color="primary" (click)="changeValue(i)" type="button">
+      <button mat-icon-button color="primary" (click)="changeValue(i)" type="button" [disabled]="control.disabled">
         <mat-icon>{{checked(i) ? 'star' : 'star_border'}}</mat-icon>
       </button>
     </div>

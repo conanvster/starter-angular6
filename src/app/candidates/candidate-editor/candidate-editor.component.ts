@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CandidatesService } from '../../core/services/candidates.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Visit } from '../../core/models/visit.model';
 import { Subject } from 'rxjs';
@@ -31,6 +31,7 @@ export class CandidateEditorComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: { candidate: any }) => {
         if (data.candidate) {
+          this.form.addControl('_id', new FormControl(''));
           this.form.patchValue(data.candidate);
           this.visitsData = data.candidate.visits;
           this.isEdit = true;
@@ -45,7 +46,7 @@ export class CandidateEditorComponent implements OnInit, OnDestroy {
 
   public submitForm(): void {
     if (this.form.invalid) {
-      this.form.markAsDirty();
+      this.form.markAsTouched();
       return;
     }
 
@@ -73,7 +74,6 @@ export class CandidateEditorComponent implements OnInit, OnDestroy {
       preferences: [''],
       notes: [''],
       visits: this.fb.array([]),
-      _id: ['']
     });
   }
 }

@@ -2,6 +2,7 @@ import { Closed } from '../enums/closed.enum';
 
 export class Visit {
   _id: string;
+  tabId: number;
   active: boolean;
   closed: boolean | Closed;
   general: {

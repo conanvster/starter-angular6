@@ -1,11 +1,11 @@
-<div [formGroup]="proposal">
+<div [formGroup]="form">
   <div class="row">
     <div class="col-lg-12">
       <mat-slide-toggle color="primary" formControlName="done">
         <h2>Proposal</h2>
       </mat-slide-toggle>
     </div>
-    <div class="col-lg-12 slide-content" *ngIf="proposal.get(['done']).value">
+    <div class="col-lg-12 slide-content" *ngIf="form.get(['done']).value">
       <div class="row mat-elevation-z4">
         <div class="col-lg-3">
           <mat-form-field>

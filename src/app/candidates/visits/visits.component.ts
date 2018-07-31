@@ -11,19 +11,21 @@ import { Visit } from '../../core/models/visit.model';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-candidates-visit-tabs',
-  templateUrl: './visit-tabs.component.html',
-  styleUrls: ['./visit-tabs.component.scss']
+  selector: 'app-visits',
+  templateUrl: './visits.component.html',
+  styleUrls: ['./visits.component.scss']
 })
-export class VisitTabsComponent implements OnInit, OnDestroy {
+export class VisitsComponent implements OnInit, OnDestroy {
 
-  @Input() visits: FormArray;
-  @Input() visitsData: Visit[];
+  @Input() form: FormArray;
+  @Input() visits: Visit[];
 
   public positions: Position[];
   public agencies: Agency[];
   public origins: Origin[];
   public today: Date = new Date();
+  public closed;
+  public selectedIndex = 1;
 
   private destroy$: Subject<boolean> = new Subject();
 
@@ -32,28 +34,31 @@ export class VisitTabsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.visits.valueChanges
+    this.form.valueChanges
       .pipe(
         debounceTime(0),
         distinctUntilChanged(),
         takeUntil(this.destroy$)
       )
       .subscribe((data: Visit[]) => {
-        data.forEach((visit: Visit, key: number) => {
-          console.log(visit.closed);
+        data.forEach((visit: Visit) => {
           visit.closed ?
-            this.getVisitsItem(key).disable({ emitEvent: false }) :
-            this.getVisitsItem(key).enable({ emitEvent: false });
+            this.getVisitsItem(visit.tabId).disable({ emitEvent: false }) :
+            this.getVisitsItem(visit.tabId).enable({ emitEvent: false });
         });
       });
 
-    if (this.visitsData) {
-      this.visitsData.forEach((visit: any, i) => {
+    this.closed = Closed;
+
+    if (this.visits) {
+      this.visits.forEach((visit: any, i) => {
         this.addVisit();
         this.getVisitsItem(i).patchValue(visit);
       });
+      this.selectedIndex = this.visits.length;
     } else {
       this.addVisit();
+      this.selectedIndex = 1;
     }
 
     forkJoin([
@@ -82,36 +87,45 @@ export class VisitTabsComponent implements OnInit, OnDestroy {
     this.getClosedControl(i).setValue(type);
   }
 
+  public getClosedAlertText(type: Closed): string {
+    return type === this.closed.HIRED ?
+      'This visit has been closed. Candidate was hired. Reopen to edit.' :
+      'This visit has been closed. Candidate rejected offer or didn\'t pass interviews. Reopen to edit.';
+  }
+
   public addVisit(): void {
     if (this.hasActiveVisits()) {
       return;
     }
-    this.visits.push(this.initVisits());
+    this.form.push(this.initVisit());
+    this.selectedIndex = this.form.controls.length;
+    console.log(this.form.controls.length);
   }
 
   public removeVisit(i: number): void {
-    this.visits.removeAt(i);
+    this.form.removeAt(i);
   }
 
   public hasActiveVisits(): boolean {
-    return !!find(this.visits.getRawValue(), ['closed', false]);
+    return !!find(this.form.getRawValue(), ['closed', false]);
   }
 
   private getVisitsItem(i: number): FormGroup {
-    return <FormGroup>this.visits.get(i.toString());
+    return <FormGroup>this.form.get(i.toString());
   }
 
   private getClosedControl(i: number): AbstractControl {
     return <FormControl>this.getVisitsItem(i).get('closed');
   }
 
-  private initVisits(): FormGroup {
+  private initVisit(): FormGroup {
     return this.fb.group({
+      tabId: [Number(this.form.controls.length)],
       active: [true],
       closed: [false],
       general: this.fb.group({
         company: [''],
-        date: [this.today, [Validators.required]],
+        date: [this.today, [Validators.required, Validators.maxLength(4)]],
         desiredSalary: [''],
         notes: [''],
         rating: [0],
