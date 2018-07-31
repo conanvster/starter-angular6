@@ -19,7 +19,8 @@ import { AuthGuardService } from './core/services/auth-guard.service';
 import { CandidatesService } from './core/services/candidates.service';
 import { EntityService } from './core/services/entity.service';
 import { ErrorsHandlerService } from './core/services/errors-handler.service';
-import {SkillsComponent} from './skills/skills.component';
+import { SkillsComponent } from './skills/skills.component';
+import { SkillsService } from './core/services/skills.service';
 
 export function initializer(userService: UserService) {
   return () => {
@@ -34,7 +35,7 @@ export function initializer(userService: UserService) {
     SignUpComponent,
     MenuComponent,
     ProfileSettingsComponent,
-    SkillsComponent
+    SkillsComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,7 @@ export function initializer(userService: UserService) {
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [
     AuthService,
@@ -51,11 +52,20 @@ export function initializer(userService: UserService) {
     AuthGuardService,
     CandidatesService,
     EntityService,
-    { provide: HTTP_INTERCEPTORS, useClass: HttpHeadersInterceptor, multi: true },
-    { provide: APP_INITIALIZER, useFactory: initializer, deps: [UserService], multi: true },
-    { provide: ErrorHandler, useClass: ErrorsHandlerService }
+    SkillsService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpHeadersInterceptor,
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      deps: [UserService],
+      multi: true,
+    },
+    { provide: ErrorHandler, useClass: ErrorsHandlerService },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
