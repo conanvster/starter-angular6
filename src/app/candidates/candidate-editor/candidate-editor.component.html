@@ -51,17 +51,19 @@
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <app-candidates-visit-tabs [visits]="form.get('visits')"
-                                   [visitsData]="visitsData"
-                                   (addVisit)="addVisit()"
-                                   (removeVisit)="removeVisit($event)"
-                                   formArrayName="visits"
-        ></app-candidates-visit-tabs>
+        <app-visits [form]="form.get('visits')"
+                    [visits]="visitsData"
+                    (addVisit)="addVisit()"
+                    (removeVisit)="removeVisit($event)"
+                    formArrayName="visits"
+        ></app-visits>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-12">
-        <button class="align-self-end" mat-raised-button type="submit" color="primary">Save</button>
+        <button class="align-self-end" mat-raised-button type="submit" color="primary">
+          Save
+        </button>
       </div>
     </div>
   </form>
